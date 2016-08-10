@@ -24,6 +24,6 @@ To monitor that input files has been built, [on this platform](http://www.nofram
 With the collected arrival time has been wrote a simple shiny application useful to explore the mean arrival time of every file.
 
 This small application shows a plot with the indication of the mean and the critical arrival time per every file.
-Instead of drawing an histogram with the arrival time groupped in bins, the plots are drawed using the calculated mean and standard deviation.
+Instead of drawing an histogram with the arrival time groupped in bins, the plots are drawed using the calculated mean and standard deviation, under the assumption that the underlying data are iid Gaussian.
 
 We have different files and different averages for weekdays and sunday, so in the application it is possibile to select with a combo if there are available data for sunday.
