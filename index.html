@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exploring Average Arrival Time of Batch External Data Files</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Exploring Average Arrival Time of Batch External Data Files">
+  <meta name="author" content="Mariano Fiorentino">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Exploring Average Arrival Time of Batch External Data Files</h1>
+    <h2></h2>
+    <p>Mariano Fiorentino<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Introduction</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>A system that load data from heterogeneous external sources to do complex computation</li>
+<li>The arrival time of data files is critical to show updated data for the users of that system</li>
+<li>Is important to know when a data file is in late</li>
+</ol>
+
+<p><img src="engl-illu.gif" alt="width"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Monitor the arrival time of the external files</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>To monitor the system has been built an application that:</p>
+
+<ol>
+<li>Collect the arrival time of every file</li>
+<li>Every week calculate the mean arrival time and the standard deviation per every file</li>
+<li>Every hour send a report to the Application Mantenance Team about what is out of 2 standard deviation over the mean</li>
+</ol>
+
+<p>With the collected arrival time has been wrote a simple shiny application useful to explore the mean arrival time of every file. </p>
+
+<ul>
+<li><a href="https://github.com/mariano-fiorentino/Course-Project-Shiny-Application">Here the Source Code</a></li>
+<li><a href="https://marianofiorentino.shinyapps.io/shinyApp/">Here the ShinyApp</a></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>A Shiny application to expore the mean arrival time of every file</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>This small application shows a plot with the indication of the mean and the critical arrival time per every file.
+Instead of drawing an histogram with the arrival time groupped in bins, the plots are drawed using the calculated mean and standard deviation.</p>
+
+<p>Here an example of a calculated data record. The unit of measure for MEAN, MAXTIME and SD is minutes after midnigth:</p>
+
+<pre><code>## &#39;data.frame&#39;:    1 obs. of  7 variables:
+##  $ COUNT  : num 12
+##  $ DAYS   : Factor w/ 1 level &quot;Mon;Tue;Wed;Thu;Fri;Sat&quot;: 1
+##  $ ISSUN  : logi FALSE
+##  $ LOADER : Factor w/ 1 level &quot;CONTACT_STAT_3136&quot;: 1
+##  $ MAXTIME: num 622
+##  $ MEAN   : num 575
+##  $ SD     : num 18.9
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="id" style="background:;">
+  <hgroup>
+    <h2>Example of the plot</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:48%;' class='centered'>
+  <p><img src="assets/fig/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"></p>
+
+</div>
+<div style='float:right;width:48%;'>
+  <p>In this plot we can see that the average arrival time for the selected file is:</p>
+
+<pre><code>## [1] &quot;10:34:40&quot;
+</code></pre>
+
+<p>The red line shown the arrival time for the file over which we send a warning. This is calculated using t confidence interval formula: </p>
+
+<p>$$\bar X \pm t_{n-1} S/\sqrt{n}$$</p>
+
+<p>In this case the max allowed value is:</p>
+
+<pre><code>## [1] &quot;11:21:41&quot;
+</code></pre>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Introduction'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Monitor the arrival time of the external files'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='A Shiny application to expore the mean arrival time of every file'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Example of the plot'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
