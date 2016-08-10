@@ -9,7 +9,7 @@ In this repository it is possibile to see the source code of that application.
 * ui.R
 * BaseLine.csv
 
-For the associated Slidify presentation, click [Here](https://marianofiorentino.shinyapps.io/shinyApp/)
+For the associated Slidify presentation, click [Here](https://mariano-fiorentino.github.io/Course-Project-Shiny-Application)
 
 ### Description of the Application
 
