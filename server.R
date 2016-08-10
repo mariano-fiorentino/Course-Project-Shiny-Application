@@ -36,7 +36,7 @@ shinyServer(
                 geom_vline(xintercept = as.numeric(
                     c(as.POSIXct(mean()*60, origin="1970-01-01"),
                       as.POSIXct(max()*60, origin="1970-01-01"))), colour=c("green","red")) +
-                ggtitle(dfSelected$LOADER) +
+#                ggtitle(dfSelected$LOADER) +
                 annotate("text", x = as.POSIXct(max()*60+20, origin="1970-01-01"), y = min(hx), label = "Critical") +
                 annotate("text", x = as.POSIXct(mean()*60-20, origin="1970-01-01"), y = min(hx), label = "Mean")
             

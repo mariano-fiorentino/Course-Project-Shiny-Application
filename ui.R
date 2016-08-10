@@ -9,13 +9,21 @@ shinyUI(
         sidebarPanel(
             titlePanel("Select the Input File"),
             selectInput("theLoader", "File Name", showList),
-            selectInput("issun", "Distribution on Sunday", c(FALSE, TRUE)),
+            selectInput("issun", "Sunday data", c(FALSE, TRUE)),
             p('Observed Mean:'),
             verbatimTextOutput("mean"),
-            p('Critical Time:'),
+            p('Critical Arrival Time:'),
             verbatimTextOutput("max")
         ), 
-        mainPanel(    
-            plotOutput('newHist')
+        mainPanel(
+            plotOutput('newHist'),
+            helpText(a("Source code and documentation",
+                       href="https://github.com/mariano-fiorentino/Course-Project-Shiny-Application",
+                       target="_blank")
+            ),
+            helpText(a("Slidify presentation",
+                       href="https://mariano-fiorentino.github.io/Course-Project-Shiny-Application",
+                       target="_blank")
+            )
     )
 ))
