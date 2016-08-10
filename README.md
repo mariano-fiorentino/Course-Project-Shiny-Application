@@ -13,8 +13,9 @@ For the associated Slidify presentation, click [Here](https://mariano-fiorentino
 
 ### Description of the Application
 
-In a  system that load data from heterogeneous external sources to do complex computation, the arrival time of data files is critical to show updated data for the users of that system, is important to know when a data file is in late
-To monitor that system has been built [on this platform](http://www.noframeworks.com/wp-content/uploads/2016/08/Architettura-1024x724.png) an application that:
+In a  system that load data from heterogeneous external sources to do complex computation, the arrival time of data files is critical to show updated information for the users of that system. Also is important to know when a data file is in late.
+
+To monitor that input files has been built, [on this platform](http://www.noframeworks.com/wp-content/uploads/2016/08/Architettura-1024x724.png), an application that:
 
 - Collect the arrival time of every file
 - Every week calculate the mean arrival time and the standard deviation per every file
