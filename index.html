@@ -88,12 +88,12 @@
   </hgroup>
   <article data-timings="">
     <p>This small application shows a plot with the indication of the mean and the critical arrival time per every file.
-Instead of drawing an histogram with the arrival time groupped in bins, the plots are drawed using the calculated mean and standard deviation, under the assumption that the underlying data are iid Gaussian.</p>
+The plots are drawed using the calculated mean and standard deviation, under the assumption that the underlying data are iid Gaussian.</p>
 
 <p>Here an example of a calculated data record. The unit of measure for MEAN, MAXTIME and SD is minutes after midnigth:</p>
 
 <pre><code>## &#39;data.frame&#39;:    1 obs. of  7 variables:
-##  $ COUNT  : num 12
+##  $ COUNT  : num 3
 ##  $ DAYS   : Factor w/ 1 level &quot;Mon;Tue;Wed;Thu;Fri;Sat&quot;: 1
 ##  $ ISSUN  : logi FALSE
 ##  $ LOADER : Factor w/ 1 level &quot;CONTACT_STAT_3136&quot;: 1
@@ -117,18 +117,19 @@ Instead of drawing an histogram with the arrival time groupped in bins, the plot
 
 </div>
 <div style='float:right;width:48%;'>
-  <p>In this plot we can see that the average arrival time for the selected file is:</p>
-
-<pre><code>## [1] &quot;10:34:40&quot;
-</code></pre>
-
-<p>The red line shown the arrival time for the file over which we send a warning. This is calculated using t confidence interval formula: </p>
+  <p>The red line shows the critical arrival time. This is calculated using t confidence interval formula: </p>
 
 <p>$$\bar X \pm t_{n-1} S/\sqrt{n}$$</p>
 
-<p>In this case the max allowed value is:</p>
+<pre><code class="r">critic &lt;- mean + qt(.975, count-1) * 
+    sd / sqrt(count)
+criticDate &lt;- as.POSIXct(critic*60, 
+    origin=&quot;1970-01-01&quot;)
+format(criticDate, 
+       format=&quot;%H:%M&quot;)
+</code></pre>
 
-<pre><code>## [1] &quot;11:21:41&quot;
+<pre><code>## [1] &quot;11:21&quot;
 </code></pre>
 
 </div>
